@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase";
 
+type AuthType = "email" | "google";
+
 const SignIn = () => {
   useEffect(() => {}, []);
   const [username, setUsername] = useState("abc@dummy.com");
   const [password, setPassword] = useState("password");
-  const [type, setType] = useState<"email" | "google">("email");
+  const [type, setType] = useState<AuthType>("email");
 
   const signIn = () => {
     switch (type) {
@@ -68,7 +70,7 @@ const SignIn = () => {
         <select
           value={type}
           onChange={(e) => {
-            setType(e.target.value);
+            setType(e.target.value as AuthType);
           }}
         >
           <option value="email">Email</option>
